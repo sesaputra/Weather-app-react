@@ -1,0 +1,307 @@
+/* Variabel CSS untuk kemudahan kustomisasi */
+:root {
+  --background-color: #2e3b5e;
+  --card-background: #4a5d84;
+  --primary-color: #5d9eef;
+  --secondary-color: #fff;
+  --text-light: #e0e7ff;
+  --font-family: 'Poppins', sans-serif;
+}
+
+/* Container utama */
+.weather-app {
+  place-self: center;
+  padding: 30px;
+  border-radius: 20px;
+  background: var(--card-background);
+  color: var(--secondary-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.search-bar input {
+  flex: 1;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--secondary-color);
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar input::placeholder {
+  color: var(--text-light);
+  opacity: 0.7;
+}
+
+.search-bar input:focus {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.search-bar img {
+  width: 50px;
+  height: 50px;
+  padding: 12px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar img:hover {
+  background: #4a86d2;
+}
+
+/* Transisi konten saat memuat */
+.weather-content {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Cuaca utama */
+.weather-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.weather-icon {
+  width: 150px;
+  margin: 0;
+  animation: float 3s ease-in-out infinite;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.temperature {
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 1;
+  margin: 0;
+  transition: opacity 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.location {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+  transition: opacity 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.status {
+  font-size: 18px;
+  text-transform: capitalize;
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* Detail cuaca */
+.weather-details {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  color: var(--text-light);
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.weather-details .col {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+}
+
+.weather-details .col span {
+  display: block;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.weather-details .col img {
+  width: 28px;
+}
+
+.feels-like {
+  font-size: 16px;
+  opacity: 0.8;
+  margin-top: -10px;
+}
+
+/* Separator */
+hr {
+  width: 80%;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Bagian ramalan */
+.forecast-section h4 {
+  margin: 0 0 15px 0;
+  font-size: 20px;
+}
+
+.forecast-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.forecast-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 5px;
+  flex: 1;
+  min-width: 80px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  cursor: default;
+}
+
+.forecast-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.forecast-item .forecast-day {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.forecast-item .forecast-icon {
+  width: 60px;
+  margin: 5px 0;
+}
+
+.forecast-item .forecast-temp {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.forecast-item .forecast-status {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.7;
+  text-transform: capitalize;
+  text-align: center;
+  height: 30px;
+}
+
+/* Responsif */
+@media (max-width: 480px) {
+  .weather-app {
+    padding: 20px;
+  }
+  .temperature {
+    font-size: 60px;
+  }
+  .location {
+    font-size: 20px;
+  }
+  .forecast-list {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .forecast-item {
+    min-width: unset;
+    padding: 10px 8px;
+    flex-basis: auto;
+    font-size: 12px;
+  }
+  .forecast-item .forecast-day {
+    font-size: 12px;
+  }
+  .forecast-item .forecast-icon {
+    width: 40px;
+  }
+  .forecast-item .forecast-temp {
+    font-size: 14px;
+  }
+  .forecast-item .forecast-status {
+    height: auto;
+    margin-top: 5px;
+  }
+}
+
+.message {
+  font-size: 18px;
+  color: var(--text-light);
+  margin-top: 20px;
+}
+
+.message.error {
+  color: #ffcccc;
+  background-color: #d14141;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.weather-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  /* Tambahkan atau sesuaikan margin-top di sini */
+  margin-top: 25px; 
+}

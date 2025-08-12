@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Reset dasar untuk konsistensi di semua browser */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container utama aplikasi */
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #e3f2fd, #d1e5f8);
+  background-size: 200% 200%;
+  animation: backgroundPan 10s ease infinite;
+}
+
+/* Animasi untuk latar belakang */
+@keyframes backgroundPan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Perbaikan untuk tampilan di layar yang lebih kecil */
+@media (max-width: 480px) {
+  .app {
+    padding: 20px 10px;
+    align-items: flex-start;
+  }
+}
