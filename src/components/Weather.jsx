@@ -9,14 +9,17 @@ import snow_icon from '../assets/snow.png';
 import wind_icon from '../assets/wind.png';
 import humidity_icon from '../assets/humidity.png';
 
+// Mapping icon OpenWeatherMap ke asset lokal
 const allIcons = {
-  "01d": clear_icon, "01n": clear_icon,
-  "02d": cloud_icon, "02n": cloud_icon,
-  "03d": cloud_icon, "03n": cloud_icon,
-  "04d": drizzle_icon, "04n": drizzle_icon,
-  "09d": rain_icon, "09n": rain_icon,
-  "10d": rain_icon, "10n": rain_icon,
-  "13d": snow_icon, "13n": snow_icon,
+  "01d": clear_icon, "01n": clear_icon, // clear sky
+  "02d": cloud_icon, "02n": cloud_icon, // few clouds
+  "03d": cloud_icon, "03n": cloud_icon, // scattered clouds
+  "04d": cloud_icon, "04n": cloud_icon, // broken clouds <-- Dipetakan ke cloud_icon
+  "09d": drizzle_icon, "09n": drizzle_icon, // shower rain
+  "10d": rain_icon, "10n": rain_icon, // rain
+  "11d": rain_icon, "11n": rain_icon, // thunderstorm
+  "13d": snow_icon, "13n": snow_icon, // snow
+  "50d": cloud_icon, "50n": cloud_icon // mist/fog
 };
 
 const Weather = () => {
@@ -54,16 +57,21 @@ const Weather = () => {
           throw new Error("Kota tidak ditemukan.");
         }
 
+        // Debug icon code
+        console.log("Current icon code:", dataCurrent.weather[0].icon);
+        console.log("Forecast icon codes:", dataForecast.list.map(item => item.weather[0].icon));
+
+        // Filter ramalan jam 12:00:00
         const dailyForecast = dataForecast.list.filter(item => item.dt_txt.includes("12:00:00"));
 
         setWeatherData({
           current: {
             humidity: dataCurrent.main.humidity,
-            windSpeed: dataCurrent.wind.speed,
+            windSpeed: (dataCurrent.wind.speed * 3.6).toFixed(1), // m/s → km/h
             temp: Math.floor(dataCurrent.main.temp),
             feelsLike: Math.floor(dataCurrent.main.feels_like),
             status: dataCurrent.weather[0].description,
-            icon: allIcons[dataCurrent.weather[0].icon] || clear_icon,
+            icon: allIcons[dataCurrent.weather[0].icon] || cloud_icon, // fallback cloud
           },
           location: `${dataCurrent.name}, ${dataCurrent.sys.country}`,
           forecast: dailyForecast.slice(0, 5).map(day => ({
@@ -72,7 +80,7 @@ const Weather = () => {
             }),
             temp: Math.floor(day.main.temp),
             status: day.weather[0].description,
-            icon: allIcons[day.weather[0].icon] || clear_icon,
+            icon: allIcons[day.weather[0].icon] || cloud_icon,
           }))
         });
         
@@ -87,7 +95,7 @@ const Weather = () => {
   };
 
   useEffect(() => {
-    search("Jakarta");
+    search("Tibubiyu");
   }, []);
 
   return (
