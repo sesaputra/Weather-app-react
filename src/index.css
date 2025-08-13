@@ -14,12 +14,20 @@
   justify-content: center;
   align-items: center;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #e3f2fd, #d1e5f8);
-  background-size: 200% 200%;
-  animation: backgroundPan 10s ease infinite;
+  /* Pastikan path atau jalur file sudah benar. */
+  background-image: url('./assets/gambar_gunung.jpg');
+  
+  /* background-size: cover akan memastikan gambar menutupi seluruh area tanpa distorsi. */
+  background-size: cover;
+  
+  /* background-position: center akan memposisikan gambar di tengah-tengah elemen. */
+  background-position: center;
+  
+  /* background-repeat: no-repeat akan mencegah gambar berulang jika ukurannya lebih kecil. */
+  background-repeat: no-repeat;
 }
 
-/* Animasi untuk latar belakang */
+/* Animasi untuk latar belakang (jika masih ingin menggunakannya, bisa disesuaikan) */
 @keyframes backgroundPan {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
